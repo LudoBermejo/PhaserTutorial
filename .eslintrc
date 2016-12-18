@@ -1,0 +1,8 @@
+{
+  "extends": "airbnb/base",
+  "rules": {
+  },
+  "env": {
+    "browser": true
+  }
+}
