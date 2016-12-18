@@ -1,19 +1,13 @@
-# Phaser + ES6 + Webpack + Jasmine + Karma.
-#### A bootstrap project to create games with Phaser + ES6 + Webpack + Jasmine + Karma.
+# Phaser tutorial
+#### The most simple tutorial for PhaserJS. A 2D movement Ludo 
 
-Based on awesome job from
+Based on Phaser boilerplate in
 
-http://github.com/lean/phaser-es6-webpack
+https://github.com/LudoBermejo/PhaserJS-Webpack-Jasmine-Karma
 
 ## Features
-- JavaScript Standard Style
-- Next generation of Javascript
-- Webpack ready
-- Multiple browser testing
-- WebFont Loader
-- Responsive utilities!
-- Jasmine tests running on karma
-
+- Tests with Jasmine. Yeah, tests!!
+- I will add some specific lessons in different branches
 
 # Setup
 To use this bootstrap you’ll need to install a few things before you have a working copy of the project.
@@ -67,11 +61,3 @@ Run:
 
 This will optimize and minimize the compiled bundle.
 
-## Credits
-Big thanks to this great repos:
-
-http://github.com/lean/phaser-es6-webpack
-
-https://github.com/belohlavek/phaser-es6-boilerplate
-
-https://github.com/cstuncsik/phaser-es6-demo
