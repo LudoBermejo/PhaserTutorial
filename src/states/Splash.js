@@ -14,6 +14,10 @@ export default class extends Phaser.State {
     // preload your assets
     //
     this.load.spritesheet('ludoSprite', 'assets/sprites/ludo.png', 32, 48);
+
+    // Map
+    this.load.tilemap('cityMap', 'assets/maps/city/city.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('cityTiles', 'assets/maps/city/city.png');
   }
 
   create() {

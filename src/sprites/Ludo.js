@@ -4,39 +4,61 @@ export default class extends Phaser.Sprite {
 
   constructor({ game, x, y, asset }) {
     super(game, x, y, asset);
-
     // Game
     this.game = game;
+    this.asset = asset;
+  }
 
+  prepare(layersToCollide) {
     // Variables
     this.anchor.setTo(0.5);
     this.normalSpeed = 150;
     this.runningSpeed = 300;
 
     // Animations
-    this.animations.add('stop', [0], 12, true, true);
-
-    this.animations.add('down', [0, 1, 2, 3], 12, true, true);
-    this.animations.add('left', [4, 5, 6, 7], 12, true, true);
-    this.animations.add('right', [8, 9, 10, 11], 12, true, true);
-    this.animations.add('up', [12, 13, 14, 15], 12, true, true);
-    this.animations.add('stop', [1], 12, true, true);
+    if(this.asset) {
+      this.animations.add('stop', [0], 12, true, true);
+      this.animations.add('down', [0, 1, 2, 3], 12, true, true);
+      this.animations.add('left', [4, 5, 6, 7], 12, true, true);
+      this.animations.add('right', [8, 9, 10, 11], 12, true, true);
+      this.animations.add('up', [12, 13, 14, 15], 12, true, true);
+      this.animations.add('stop', [1], 12, true, true);
+    }
 
     // Controls
-    this.cursors = this.game.input.keyboard.createCursorKeys();
-    this.shiftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
+    if(this.game.input) {
+      this.cursors = this.game.input.keyboard.createCursorKeys();
+      this.shiftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
+    }
 
     // Enable if for physics. This creates a default rectangular body.
-    this.game.physics.p2.enable(this);
+    if(this.game.physics) {
+      this.game.physics.arcade.enable(this);
+    }
+
+    if(this.game.camera) {
+      game.camera.follow(this);
+    }
 
     //  Modify a few body properties
-    this.body.setZeroDamping();
-    this.body.fixedRotation = true;
+    if(this.body) {
+//      this.body.setZeroDamping();
+      this.body.setSize(10, 14, 2, 1);
+      this.body.fixedRotation = true;
+    }
+
+    if(layersToCollide && layersToCollide.length) {
+      const self = this;
+      layersToCollide.forEach((layer) => {
+        game.physics.arcade.collide(self, layer)
+      });
+    }
+
   }
 
   update() {
 
-    this.body.setZeroVelocity();
+    this.body.velocity.set(0);
 
     // Do movement or stop
     let selectedAnimation = 'stop';
@@ -47,19 +69,19 @@ export default class extends Phaser.Sprite {
     }
 
     if (this.cursors.up.isDown) {
-      this.body.moveUp(speed);
+      this.body.velocity.y -= speed;
       selectedAnimation = 'up';
     }
     if (this.cursors.down.isDown) {
-      this.body.moveDown(speed);
+      this.body.velocity.y += speed;
       selectedAnimation = 'down';
     }
     if (this.cursors.left.isDown) {
-      this.body.moveLeft(speed);
+      this.body.velocity.x -= speed;
       selectedAnimation = 'left';
     }
     if (this.cursors.right.isDown) {
-      this.body.moveRight(speed);
+      this.body.velocity.x += speed;
       selectedAnimation = 'right';
     }
     this.animations.play(selectedAnimation, 12, true);
