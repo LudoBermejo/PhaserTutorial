@@ -9,11 +9,13 @@ export default class extends Phaser.Sprite {
     this.asset = asset;
   }
 
-  prepare(layersToCollide) {
+  prepare(layerToCollide) {
     // Variables
     this.anchor.setTo(0.5);
     this.normalSpeed = 150;
     this.runningSpeed = 300;
+    this.layerToCollide = layerToCollide;
+
 
     // Animations
     if(this.asset) {
@@ -34,6 +36,7 @@ export default class extends Phaser.Sprite {
     // Enable if for physics. This creates a default rectangular body.
     if(this.game.physics) {
       this.game.physics.arcade.enable(this);
+      this.game.physics.enable(this);
     }
 
     if(this.game.camera) {
@@ -43,16 +46,11 @@ export default class extends Phaser.Sprite {
     //  Modify a few body properties
     if(this.body) {
 //      this.body.setZeroDamping();
-      this.body.setSize(10, 14, 2, 1);
-      this.body.fixedRotation = true;
+      this.body.setSize(20, 30, 0, 10);
+      this.body.collideWorldBounds = true;
     }
 
-    if(layersToCollide && layersToCollide.length) {
-      const self = this;
-      layersToCollide.forEach((layer) => {
-        game.physics.arcade.collide(self, layer)
-      });
-    }
+    this.scale.setTo(0.8, 0.8)
 
   }
 
@@ -62,6 +60,11 @@ export default class extends Phaser.Sprite {
 
     // Do movement or stop
     let selectedAnimation = 'stop';
+
+    if(this.layerToCollide) {
+      this.game.physics.arcade.collide(this, this.layerToCollide);
+    }
+    this.body.velocity.set(0);
 
     let speed = this.normalSpeed;
     if (this.shiftKey.isDown) {

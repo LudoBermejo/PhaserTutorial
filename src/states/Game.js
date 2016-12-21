@@ -34,7 +34,7 @@ export default class extends Phaser.State {
       asset: 'ludoSprite',
     });
 
-    this.Hero.prepare(this.City.layersToCollide);
+    this.Hero.prepare(this.City.layerToCollide);
 
     this.game.add.existing(this.Hero);
 
