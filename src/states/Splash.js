@@ -18,6 +18,9 @@ export default class extends Phaser.State {
     // Map
     this.load.tilemap('cityMap', 'assets/maps/city/city.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('cityTiles', 'assets/maps/city/city.png');
+
+    // Too slow map, let's try with background
+    this.load.image('background', 'assets/maps/city/city_full.png');
   }
 
   create() {
