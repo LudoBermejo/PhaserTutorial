@@ -30,6 +30,13 @@ export default class extends Phaser.Sprite {
     // Controls
     if(this.game.input) {
       this.cursors = this.game.input.keyboard.createCursorKeys();
+      this.wasd = {
+        up: this.game.input.keyboard.addKey(Phaser.Keyboard.W),
+        down: this.game.input.keyboard.addKey(Phaser.Keyboard.S),
+        left: this.game.input.keyboard.addKey(Phaser.Keyboard.A),
+        right: this.game.input.keyboard.addKey(Phaser.Keyboard.D),
+      };
+
       this.shiftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
     }
 
@@ -71,19 +78,19 @@ export default class extends Phaser.Sprite {
       speed = this.runningSpeed;
     }
 
-    if (this.cursors.up.isDown) {
+    if (this.cursors.up.isDown || this.wasd.up.isDown) {
       this.body.velocity.y -= speed;
       selectedAnimation = 'up';
     }
-    if (this.cursors.down.isDown) {
+    if (this.cursors.down.isDown || this.wasd.down.isDown) {
       this.body.velocity.y += speed;
       selectedAnimation = 'down';
     }
-    if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown || this.wasd.left.isDown) {
       this.body.velocity.x -= speed;
       selectedAnimation = 'left';
     }
-    if (this.cursors.right.isDown) {
+    if (this.cursors.right.isDown || this.wasd.right.isDown) {
       this.body.velocity.x += speed;
       selectedAnimation = 'right';
     }
