@@ -4,6 +4,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 // Phaser webpack config
 const phaserModule = path.join(__dirname, '/node_modules/phaser/');
+const easyStarModule = path.join(__dirname, '/node_modules/easystarjs/bin/easystar-0.3.1.min.js');
 const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
 const pixi = path.join(phaserModule, 'build/custom/pixi.js');
 const p2 = path.join(phaserModule, 'build/custom/p2.js');
@@ -54,6 +55,7 @@ module.exports = {
       phaser,
       pixi,
       p2,
+      easyStarModule,
     },
   },
 };

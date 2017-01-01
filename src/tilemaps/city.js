@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 export default class {
 
   constructor({ game, tilemap, tileset }) {
@@ -19,14 +17,14 @@ export default class {
 
 
     this.map.layers.forEach((layer) => {
-      //const layerSelected = self.map.createLayer(layer.name);
-      //(layer.name.indexOf('Collision') > -1) ? self.layerToCollide = layerSelected : self.layersBackground.push(layerSelected);
-      if(layer.name.indexOf('Collision') > -1) {
+      // const layerSelected = self.map.createLayer(layer.name);
+      // (layer.name.indexOf('Collision') > -1) ? self.layerToCollide = layerSelected : self.layersBackground.push(layerSelected);
+      if (layer.name.indexOf('Collision') > -1) {
+        console.log(layer);
         const layerSelected = self.map.createLayer(layer.name);
         self.layerToCollide = layerSelected;
-        this.layersBackground.push(layerSelected)
+        this.layersBackground.push(layerSelected);
       }
-
     });
 
     //  This isn't totally accurate, but it'll do for now
@@ -34,5 +32,6 @@ export default class {
 
     //  This resizes the game world to match the layer dimensions
     this.layersBackground[0].resizeWorld();
+
   }
 }

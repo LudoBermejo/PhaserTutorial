@@ -15,7 +15,7 @@ export default class extends Phaser.State {
     banner.fill = '#77BFA3';
     banner.anchor.setTo(0.5);
 
-    // enable physics
+    // enable physicsOOF
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  Make things a bit more bouncey
@@ -36,25 +36,19 @@ export default class extends Phaser.State {
 
     this.Hero.prepare(this.City.layerToCollide);
 
-    this.game.add.sprite(0,0,'background');
+    this.game.add.sprite(0, 0, 'background');
     this.game.add.existing(this.Hero);
-
-
-
   }
 
   render() {
     if (__DEV__) {
       this.game.debug.spriteInfo(this.Hero, 32, 32);
-      this.game.debug.text('render FPS: ' + (this.game.time.fps || '--') , 2, 14, "#00ff00");
+      this.game.debug.text(`render FPS: ${this.game.time.fps || '--'}`, 2, 14, '#00ff00');
 
-      if (this.game.time.suggestedFps !== null)
-      {
-        this.game.debug.text('suggested FPS: ' + this.game.time.suggestedFps, 2, 28, "#00ff00");
-        this.game.debug.text('desired FPS: ' + this.game.time.desiredFps, 2, 42, "#00ff00");
+      if (this.game.time.suggestedFps !== null) {
+        this.game.debug.text(`suggested FPS: ${this.game.time.suggestedFps}`, 2, 28, '#00ff00');
+        this.game.debug.text(`desired FPS: ${this.game.time.desiredFps}`, 2, 42, '#00ff00');
       }
-
     }
-
   }
 }
