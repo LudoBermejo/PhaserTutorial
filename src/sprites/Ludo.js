@@ -140,7 +140,6 @@ export default class extends Phaser.Sprite {
     return this.searching;
   }
 
-<<<<<<< HEAD
   moveUp(speed) {
     this.body.velocity.y -= speed;
     return 'up';

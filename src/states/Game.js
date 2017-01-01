@@ -42,7 +42,7 @@ export default class extends Phaser.State {
 
   render() {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.Hero, 32, 32);
+      //this.game.debug.spriteInfo(this.Hero, 32, 32);
       this.game.debug.text(`render FPS: ${this.game.time.fps || '--'}`, 2, 14, '#00ff00');
 
       if (this.game.time.suggestedFps !== null) {
